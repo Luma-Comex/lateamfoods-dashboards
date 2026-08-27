@@ -681,23 +681,24 @@
   }
 </style>
 
+
 <div class="alert-overlay" id="alertOverlay" role="dialog" aria-modal="true" aria-labelledby="alertTitle">
   <div class="alert-modal">
     <div class="alert-modal-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
     <h2 id="alertTitle">Hay pendientes que revisar</h2>
-    <p class="lead">Encontramos 2 embarques con documentación sin aprobar y facturas sin pagar. Tocá un aviso para ir directo al detalle.</p>
+    <p class="lead">Encontramos 3 avisos de documentación o pagos pendientes. Tocá un aviso para ir directo al detalle.</p>
     <div class="alert-list">
+      <button class="alert-item" data-jump="ship-CE260990">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span class="t"><b>CE260990</b> tiene una factura de <b>US$ 17,721</b> pendiente de pago.</span>
+      </button>
       <button class="alert-item" data-jump="ship-AZ260042">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6M9 16h6M9 8h6M5 4h14v16H5z"/></svg>
-        <span class="t"><b>AZ260042</b> (Wan Hai 177) todavía no tiene sus documentos aprobados ni entregados.</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span class="t"><b>AZ260042</b> (WAN HAI 177 V.N062) todavía no tiene sus documentos aprobados ni entregados.</span>
       </button>
       <button class="alert-item" data-jump="ship-AZ260042">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         <span class="t"><b>AZ260042</b> tiene una factura de <b>US$ 26,986</b> pendiente de pago.</span>
-      </button>
-      <button class="alert-item" data-jump="ship-CE260990">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="t"><b>CE260990</b> tiene una factura de <b>US$ 17,721</b> pendiente de pago.</span>
       </button>
     </div>
     <div class="alert-actions">
@@ -814,7 +815,7 @@
               </thead>
               <tbody>
                 <tr data-subtotal="106326" data-pct="33">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Sweet Corn Kernel 15 oz, Brine, Easy Open Lid <span class="principal">Tins (425 g / 260 g neto) · Sweet Corn</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Sweet Corn Kernel 15 OZ Standard  Brine  Easy Open Lid-Tins (425/260g) <span class="principal">Sweet Corn</span></td>
                   <td class="num">US$ 9.90</td>
                   <td class="num">10,740</td>
                   <td class="num">US$ 106,326</td>
@@ -823,7 +824,7 @@
                   </td>
                 </tr>
                 <tr data-subtotal="19240" data-pct="0">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Sweet Corn Kernel 12 oz, En vacío, Easy Open Lid <span class="principal">Tins (340 g / 285 g neto) · Sweet Corn</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Sweet Corn Kernel 12 OZ Standard  In Vacuum  Easy Open Lid-Tins (340/285g) <span class="principal">Sweet Corn</span></td>
                   <td class="num">US$ 10.40</td>
                   <td class="num">1,850</td>
                   <td class="num">US$ 19,240</td>
@@ -840,37 +841,36 @@
           <div class="shipments">
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
+                <span class="ship-id">Embarque 4 de 7</span>
+                <span class="ship-note">ETD: END SEP · Produccion 2026 · 12 OZ</span>
+              </div>
+              <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
+              <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
+              <div class="ship-dates">
+                <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>28 sep</div>
+                <div class="etd-required">ETD requerido 07 jul</div><span class="delay-flag">⚠ Delayed Shipping · +83 días</span>
+              </div>
+              <span class="track-muted">Sin booking aún</span>
+              <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+            </div>
+            <div class="ship-docs-panel">
+              <div class="ship-docs-panel-inner">
+                <span class="pay-line">Aprobado: <b class="pay-pending">No</b></span>
+                <span class="pay-line">Deliver: <b class="pay-pending">No</b></span>
+                <span class="pay-line">Factura pagada: <b class="pay-pending">No</b> (sin emitir aún)</span>
+              </div>
+            </div>
+
+            <div class="shipment-row" data-status="ongoing">
+              <div class="ship-id-block">
                 <span class="ship-id">Embarque 3 de 7</span>
-                <span class="ship-note">Producción 2026 · presentación 15 oz · Booking OK</span>
+                <span class="ship-note">ETD: 31/8 · Produccion 2026 · 15 OZ · Booking OK</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
               <div class="ship-dates">
                 <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>31 ago</div>
-                <div class="etd-required">ETD requerido 02 jun</div>
-                <span class="delay-flag">⚠ Delayed Shipping · +90 días</span>
-              </div>
-              <span class="track-muted">Naviera prevista: Wan Hai · sin booking aún</span>
-              <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-            </div>
-            <div class="ship-docs-panel">
-              <div class="ship-docs-panel-inner">
-                <span class="pay-line">Aprobado: <b class="pay-pending">No</b></span>
-                <span class="pay-line">Deliver: <b class="pay-pending">No</b></span>
-                <span class="pay-line">Factura pagada: <b class="pay-pending">No</b> (sin emitir aún)</span>
-              </div>
-            </div>
-            <div class="shipment-row" data-status="ongoing">
-              <div class="ship-id-block">
-                <span class="ship-id">Embarque 4 de 7</span>
-                <span class="ship-note">Producción 2026 · presentación 12 oz</span>
-              </div>
-              <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
-              <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
-              <div class="ship-dates">
-                <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>28 sep</div>
-                <div class="etd-required">ETD requerido 07 jul</div>
-                <span class="delay-flag">⚠ Delayed Shipping · +83 días</span>
+                <div class="etd-required">ETD requerido 02 jun</div><span class="delay-flag">⚠ Delayed Shipping · +90 días</span>
               </div>
               <span class="track-muted">Sin booking aún</span>
               <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -882,17 +882,17 @@
                 <span class="pay-line">Factura pagada: <b class="pay-pending">No</b> (sin emitir aún)</span>
               </div>
             </div>
+
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 5 de 7</span>
-                <span class="ship-note">Producción 2026 · presentación 15 oz</span>
+                <span class="ship-note">ETD: END SEP · Produccion 2026 · 15 OZ</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
               <div class="ship-dates">
                 <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>28 sep</div>
-                <div class="etd-required">ETD requerido 07 jul</div>
-                <span class="delay-flag">⚠ Delayed Shipping · +83 días</span>
+                <div class="etd-required">ETD requerido 07 jul</div><span class="delay-flag">⚠ Delayed Shipping · +83 días</span>
               </div>
               <span class="track-muted">Sin booking aún</span>
               <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -904,17 +904,17 @@
                 <span class="pay-line">Factura pagada: <b class="pay-pending">No</b> (sin emitir aún)</span>
               </div>
             </div>
+
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 6 de 7</span>
-                <span class="ship-note">Producción 2026 · presentación 15 oz</span>
+                <span class="ship-note">ETD: Early NOV · Produccion 2026 · 15 OZ</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
               <div class="ship-dates">
                 <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>02 nov</div>
-                <div class="etd-required">ETD requerido 01 oct</div>
-                <span class="delay-flag">⚠ Delayed Shipping · +32 días</span>
+                <div class="etd-required">ETD requerido 01 oct</div><span class="delay-flag">⚠ Delayed Shipping · +32 días</span>
               </div>
               <span class="track-muted">Sin booking aún</span>
               <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -926,15 +926,17 @@
                 <span class="pay-line">Factura pagada: <b class="pay-pending">No</b> (sin emitir aún)</span>
               </div>
             </div>
+
             <div class="shipment-row" data-status="tbi">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 7 de 7</span>
-                <span class="ship-note">Presentación 15 oz · sujeto a necesidad</span>
+                <span class="ship-note">ETD: TBI · Produccion 2026 · 15 OZ (IF NEEDED)</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-neutral"><span class="dot"></span>Por definir</span>
               <div class="ship-dates">
                 <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>30 ene 2027</div>
+                
               </div>
               <span class="track-muted">Sin booking aún</span>
               <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -946,13 +948,15 @@
                 <span class="pay-line">Factura pagada: <b class="pay-pending">No</b> (sin emitir aún)</span>
               </div>
             </div>
-            <div class="shipment-row" data-status="loaded">
+
+            <div class="shipment-row" data-status="loaded" id="ship-CE260589">
               <div class="ship-id-block">
                 <span class="ship-id">CE260589</span>
                 <span class="ship-note">BL BKKS005878 · Cont. CSNU1437124</span>
               </div>
               <div class="ship-vessel"><span class="v-name">Palawan</span></div>
               <span class="status-pill st-good"><span class="dot"></span>Cargado</span>
+              
               <div class="route-progress" style="--p:100%">
                 <div class="ports"><span class="reached">Bangkok</span><span class="reached">Guayaquil</span></div>
                 <div class="track"><div class="fill"></div><span class="ship">🚢</span></div>
@@ -963,11 +967,12 @@
             </div>
             <div class="ship-docs-panel">
               <div class="ship-docs-panel-inner">
-                <span class="pay-line">Aprobado: <b class="pay-ok">Sí</b> · 20 abr 2026</span>
-                <span class="pay-line">Deliver: <b class="pay-ok">Sí</b> · 22 may 2026 <a href="https://www.dhl.com/ar-es/home/rastreo.html?tracking-id=9880013323&submit=1" target="_blank" rel="noopener">Ver DHL ↗</a></span>
-                <span class="pay-line">Factura pagada: <b class="pay-ok">Sí</b> · US$ 17,721 · 20 may 2026</span>
+                <span class="pay-line">Aprobado: <b class="pay-ok">Sí</b> · 20 abr</span>
+                <span class="pay-line">Deliver: <b class="pay-ok">Sí</b> · 22 may <a href="https://www.dhl.com/ar-es/home/rastreo.html?tracking-id=9880013323&amp;submit=1" target="_blank" rel="noopener">Ver DHL ↗</a></span>
+                <span class="pay-line">Factura pagada: <b class="pay-ok">Sí</b> · US$ 17,721 · 20 may</span>
               </div>
             </div>
+
             <div class="shipment-row" data-status="loaded" id="ship-CE260990">
               <div class="ship-id-block">
                 <span class="ship-id">CE260990</span>
@@ -975,6 +980,7 @@
               </div>
               <div class="ship-vessel"><span class="v-name">Wan Hai 272</span><span class="ship-note">Voy. N229</span></div>
               <span class="status-pill st-good"><span class="dot"></span>Cargado</span>
+              
               <div class="route-progress in-transit" style="--p:8%">
                 <div class="ports"><span class="reached">Bangkok</span><span>Guayaquil</span></div>
                 <div class="track"><div class="fill"></div><span class="ship">🚢</span></div>
@@ -982,12 +988,12 @@
                 <div class="etd-required">ETD requerido 05 may</div>
                 <span class="delay-flag">⚠ Delayed Shipping · +110 días</span>
               </div>
-              <a class="track-btn" href="https://www.wanhai.com/views/cargo_track_v2/tracking_data_page_by_booking.xhtml?file_num=65580&top_file_num=64735&parent_id=64738" target="_blank" rel="noopener">Ver tracking en vivo ↗</a>
+              <a class="track-btn" href="https://www.wanhai.com/views/cargo_track_v2/tracking_data_page_by_booking.xhtml?file_num=65580&amp;top_file_num=64735&amp;parent_id=64738" target="_blank" rel="noopener">Ver tracking en vivo ↗</a>
               <button class="ship-docs-toggle has-alert" type="button" aria-expanded="false" aria-label="Documentación y pagos — atención" title="Documentación y pagos — atención"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
             </div>
             <div class="ship-docs-panel">
               <div class="ship-docs-panel-inner">
-                <span class="pay-line">Aprobado: <b class="pay-ok">Sí</b> · 25 ago 2026</span>
+                <span class="pay-line">Aprobado: <b class="pay-ok">Sí</b> · 25 ago</span>
                 <span class="pay-line">Deliver: <b class="pay-pending">No</b></span>
                 <span class="pay-line">Factura pagada: <b class="pay-pending">No</b> · US$ 17,721 pendiente</span>
               </div>
@@ -1009,7 +1015,7 @@
           <div class="route">Bangkok <span class="arrow">→</span> Guayaquil</div>
           <div class="contract-tags">
             <span class="tag incoterm">FOB</span>
-            <span class="tag">10 feb – 09 nov 2026</span>
+            <span class="tag">10 feb 2026 – 09 nov 2026</span>
           </div>
         </div>
         <div class="contract-right">
@@ -1040,7 +1046,7 @@
               </thead>
               <tbody>
                 <tr data-subtotal="80958" data-pct="67">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Frozen Sweet Corn 20 kg <span class="principal">Bags (20 kg) · Frozen Sweet Corn</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Frozen Sweet Corn  20 KG     --Bags (20 KG) <span class="principal">Frozen Sweet Corn</span></td>
                   <td class="num">US$ 20.60</td>
                   <td class="num">3,930</td>
                   <td class="num">US$ 80,958</td>
@@ -1058,14 +1064,13 @@
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 3 de 3</span>
-                <span class="ship-note">🌽 Frozen Sweet Corn</span>
+                <span class="ship-note">FROZEN CORN</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
               <div class="ship-dates">
                 <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>09 nov</div>
-                <div class="etd-required">ETD requerido 01 oct</div>
-                <span class="delay-flag">⚠ Delayed Shipping · +39 días</span>
+                <div class="etd-required">ETD requerido 01 oct</div><span class="delay-flag">⚠ Delayed Shipping · +39 días</span>
               </div>
               <span class="track-muted">Sin booking aún</span>
               <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -1077,28 +1082,31 @@
                 <span class="pay-line">Factura pagada: <b class="pay-pending">No</b> (sin emitir aún)</span>
               </div>
             </div>
-            <div class="shipment-row" data-status="loaded">
+
+            <div class="shipment-row" data-status="loaded" id="ship-AZ260023">
               <div class="ship-id-block">
                 <span class="ship-id">AZ260023</span>
-                <span class="ship-note">🌽 Frozen Sweet Corn</span>
+                <span class="ship-note">BL 7621EC318424 · Cont. OTPU6764413</span>
               </div>
-              <div class="ship-vessel"><span class="v-name">TS Xiamen</span><span class="ship-note">Voy. 2609N</span></div>
+              <div class="ship-vessel"><span class="v-name">Ts Xiamen</span><span class="ship-note">Voy. 2609N</span></div>
               <span class="status-pill st-good"><span class="dot"></span>Cargado</span>
+              
               <div class="route-progress" style="--p:100%">
                 <div class="ports"><span class="reached">Bangkok</span><span class="reached">Guayaquil</span></div>
                 <div class="track"><div class="fill"></div><span class="ship">🚢</span></div>
                 <div class="caption"><span class="etd-tag">ETD Actualizado</span>15 abr · arribó <b>hace 57 días</b></div>
               </div>
-              <a class="track-btn" href="https://www.pilship.com/digital-solutions/?tab=customer&id=track-trace&label=containerTandT&module=TrackContStatus&refNo=OTPU6764413" target="_blank" rel="noopener">Ver tracking en vivo ↗</a>
+              <a class="track-btn" href="https://www.pilship.com/digital-solutions/?tab=customer&amp;id=track-trace&amp;label=containerTandT&amp;module=TrackContStatus&amp;refNo=OTPU6764413" target="_blank" rel="noopener">Ver tracking en vivo ↗</a>
               <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
             </div>
             <div class="ship-docs-panel">
               <div class="ship-docs-panel-inner">
-                <span class="pay-line">Aprobado: <b class="pay-ok">Sí</b> · 19 may 2026</span>
-                <span class="pay-line">Deliver: <b class="pay-ok">Sí</b> · 25 jun 2026 <a href="https://www.dhl.com/ar-es/home/rastreo.html?tracking-id=3656128582&submit=1&inputsource=marketingstage" target="_blank" rel="noopener">Ver DHL ↗</a></span>
-                <span class="pay-line">Factura pagada: <b class="pay-ok">Sí</b> · US$ 26,986 · 19 jun 2026</span>
+                <span class="pay-line">Aprobado: <b class="pay-ok">Sí</b> · 19 may</span>
+                <span class="pay-line">Deliver: <b class="pay-ok">Sí</b> · 25 jun <a href="https://www.dhl.com/ar-es/home/rastreo.html?tracking-id=3656128582&amp;submit=1&amp;inputsource=marketingstage" target="_blank" rel="noopener">Ver DHL ↗</a></span>
+                <span class="pay-line">Factura pagada: <b class="pay-ok">Sí</b> · US$ 26,986 · 19 jun</span>
               </div>
             </div>
+
             <div class="shipment-row" data-status="loaded" id="ship-AZ260042">
               <div class="ship-id-block">
                 <span class="ship-id">AZ260042</span>
@@ -1106,6 +1114,7 @@
               </div>
               <div class="ship-vessel"><span class="v-name">Wan Hai 177</span><span class="ship-note">Voy. N062</span></div>
               <span class="status-pill st-good"><span class="dot"></span>Cargado</span>
+              
               <div class="route-progress not-departed" style="--p:0%">
                 <div class="ports"><span>Bangkok</span><span>Guayaquil</span></div>
                 <div class="track"><div class="fill"></div><span class="ship">🚢</span></div>
@@ -1113,7 +1122,7 @@
                 <div class="etd-required">ETD requerido 01 jul</div>
                 <span class="delay-flag">⚠ Delayed Shipping · +63 días</span>
               </div>
-              <a class="track-btn" href="https://www.wanhai.com/views/cargo_track_v2/tracking_data_page_by_booking.xhtml?file_num=65580&top_file_num=64735&parent_id=64738" target="_blank" rel="noopener">Ver tracking en vivo ↗</a>
+              <a class="track-btn" href="https://www.wanhai.com/views/cargo_track_v2/tracking_data_page_by_booking.xhtml?file_num=65580&amp;top_file_num=64735&amp;parent_id=64738" target="_blank" rel="noopener">Ver tracking en vivo ↗</a>
               <button class="ship-docs-toggle has-alert" type="button" aria-expanded="false" aria-label="Documentación y pagos — atención" title="Documentación y pagos — atención"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
             </div>
             <div class="ship-docs-panel">
@@ -1140,7 +1149,7 @@
           <div class="route">Chennai <span class="arrow">→</span> Guayaquil</div>
           <div class="contract-tags">
             <span class="tag incoterm">FOB</span>
-            <span class="tag">24 mar – 23 jul 2026</span>
+            <span class="tag">24 mar 2026 – 23 jul 2026</span>
           </div>
         </div>
         <div class="contract-right">
@@ -1171,7 +1180,7 @@
               </thead>
               <tbody>
                 <tr data-subtotal="10602" data-pct="0">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🥒</span>Baby Gherkins D:1.2–2.0 / L:3.0–5.5 cm <span class="principal">Drums (270 kg / 190 kg neto) · Baby Gherkins</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🥒</span>Baby Gherkins in Acetic acid-D:1.2-2.0 cm/ L:3.0 -5.5 cm-Drums (270 KG/190KG) <span class="principal">Baby Gherkins</span></td>
                   <td class="num">US$ 176.70</td>
                   <td class="num">60</td>
                   <td class="num">US$ 10,602</td>
@@ -1180,7 +1189,7 @@
                   </td>
                 </tr>
                 <tr data-subtotal="2318" data-pct="0">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🥒</span>Baby Gherkins D:2.1–2.6 / L:5.6–7.0 cm <span class="principal">Drums (270 kg / 190 kg neto) · Baby Gherkins</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🥒</span>Baby Gherkins in Acetic acid -D:2.1 -2.6 cm/ L: 5.6- 7.0 cm-Drums (270 KG/190KG) <span class="principal">Baby Gherkins</span></td>
                   <td class="num">US$ 115.90</td>
                   <td class="num">20</td>
                   <td class="num">US$ 2,318</td>
@@ -1198,12 +1207,13 @@
             <div class="shipment-row" data-status="tbi">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 1 de 1</span>
-                <span class="ship-note">Sujeto a aprobación de muestras</span>
+                <span class="ship-note">Baby Gherkins · Sujeto a muestras</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-neutral"><span class="dot"></span>Por definir</span>
               <div class="ship-dates">
-                <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>01 oct 2026</div>
+                <div class="etd-updated"><span class="etd-tag">ETD Actualizado</span>01 oct</div>
+                
               </div>
               <span class="track-muted">Sin booking aún</span>
               <button class="ship-docs-toggle" type="button" aria-expanded="false" aria-label="Documentación y pagos" title="Documentación y pagos"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
@@ -1219,13 +1229,12 @@
         </div>
       </div>
     </article>
-
   </section>
 
   <p id="emptyState" style="display:none; text-align:center; color:var(--ink-faint); padding:30px 0;">No hay embarques que coincidan con este filtro o búsqueda.</p>
 
   <footer class="page-foot">
-    Panel de ejemplo generado sobre datos reales de Salesforce (Contract · Contratct_Products__c · Shippings__c) — LATeamFoods Comex.
+    Panel generado automáticamente desde Salesforce (Contract · Contratct_Products__c · Shippings__c) — LATeamFoods Comex.
   </footer>
 
 </div>
