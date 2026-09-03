@@ -111,6 +111,27 @@
     padding-bottom: 20px;
     border-bottom: 1px solid var(--border);
   }
+  .brand-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+    margin: 0 0 14px;
+  }
+  /* El logo tiene texto oscuro y fondo transparente: en modo oscuro va sobre un chip claro */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .brand-logo {
+      background: #fff;
+      padding: 7px 12px;
+      border-radius: 10px;
+      box-sizing: content-box;
+    }
+  }
+  :root[data-theme="dark"] .brand-logo {
+    background: #fff;
+    padding: 7px 12px;
+    border-radius: 10px;
+    box-sizing: content-box;
+  }
   .brand-eyebrow {
     font: 600 12px/1 "Public Sans", sans-serif;
     text-transform: uppercase;
@@ -703,13 +724,14 @@
 
   <header class="top">
     <div>
-      <p class="brand-eyebrow">Panel de cliente · Luma Group</p>
+      <img class="brand-logo" src="../assets/luma-foods.png" alt="Luma Foods" width="2905" height="1174">
+      <p class="brand-eyebrow">Panel de cliente</p>
       <h1>SIPIA</h1>
       <p class="client-full">Servicio Integral para la Industria Alimenticia — contratos y embarques activos</p>
     </div>
     <div class="top-meta">
       Actualizado <strong>{{UPDATED_DATE}}</strong><br>
-      Datos en vivo desde Salesforce Comex
+      Los datos se actualizan solos varias veces al día
     </div>
   </header>
 
@@ -769,7 +791,7 @@
   <p id="emptyState" style="display:none; text-align:center; color:var(--ink-faint); padding:30px 0;">No hay embarques que coincidan con este filtro o búsqueda.</p>
 
   <footer class="page-foot">
-    LATeamFoods Comex · Panel actualizado automáticamente. Ante cualquier duda sobre un embarque, escribinos a comex@lateamfoods.com
+    Luma Foods · Panel actualizado automáticamente. Ante cualquier duda sobre un embarque, escribinos a comex@lateamfoods.com
   </footer>
 
 </div>
