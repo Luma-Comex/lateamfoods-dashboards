@@ -6,7 +6,7 @@ Este documento explica cómo funciona el dashboard de SIPIA de punta a punta: de
 
 Un panel web para que un cliente (por ahora solo **SIPIA**) vea el estado de sus propios embarques: qué contrató, qué se cargó, y el tracking de cada barco. Es la primera pieza de lo que debería terminar siendo un dashboard por cliente (Semvra, Sucesores, etc. después).
 
-**Link en vivo:** https://luma-comex.github.io/lateamfoods-dashboards/sipia/
+**Link en vivo:** https://luma-comex.github.io/luma-foods-dashboards/sipia/
 
 ## 2. La idea clave: NO es tiempo real desde el navegador
 
@@ -16,12 +16,12 @@ Cuando alguien abre el link, el navegador no le pregunta nada a Salesforce. Todo
 Salesforce  →  script Node (consulta + calcula todo)  →  HTML estático  →  se sube a GitHub  →  GitHub Pages lo sirve
 ```
 
-Una Tarea de Windows en la PC de comex@lateamfoods.com corre este ciclo completo **cada 2 horas**, automáticamente. Por eso "en vivo" en la práctica significa "actualizado hace como máximo 2 horas", no al segundo.
+Una Tarea de Windows en la PC de operaciones de Comex corre este ciclo completo **cada 2 horas**, automáticamente. Por eso "en vivo" en la práctica significa "actualizado hace como máximo 2 horas", no al segundo.
 
 ## 3. Estructura del repo
 
 ```
-lateamfoods-dashboards/
+luma-foods-dashboards/
 ├── index.html              ← landing page, lista de clientes
 ├── sipia/
 │   └── index.html           ← el dashboard PUBLICADO (esto lo genera el script, no se edita a mano)
@@ -58,7 +58,7 @@ Solo se muestran contratos con `Status` en: `In Approval Process` ("On Going"), 
 
 ## 5. La automatización (Tarea de Windows)
 
-- **Nombre de la tarea:** `LAteamFoods - Dashboard SIPIA`, corre cada 2 horas.
+- **Nombre de la tarea:** `Luma Foods - Dashboard SIPIA`, corre cada 2 horas.
 - **Script que ejecuta:** `run_sipia_dashboard.bat` (vive en `CLAUDE - LAteamFoods\`, **fuera** del repo — es el único archivo de la automatización que no está en git, porque es específico de esta PC).
 - **Qué hace el .bat, en orden:**
   1. `git pull origin main` — así, si vos (Ari) subiste un cambio al script o la plantilla, esta corrida ya lo usa.
@@ -75,19 +75,19 @@ Solo se muestran contratos con `Status` en: `In Approval Process` ("On Going"), 
 
 ## 6. Cómo hacer cambios (flujo para Ari)
 
-Necesitás en tu PC: **Node.js**, **Git**, y el **Salesforce CLI (`sf`)** logueado contra la org de LAteamFoods.
+Necesitás en tu PC: **Node.js**, **Git**, y el **Salesforce CLI (`sf`)** logueado contra la org de Salesforce de Luma Foods.
 
 ```
-git clone https://github.com/Luma-Comex/lateamfoods-dashboards
-cd lateamfoods-dashboards
+git clone https://github.com/Luma-Comex/luma-foods-dashboards
+cd luma-foods-dashboards
 node tools/generar_sipia_dashboard.js   # regenera sipia/index.html con datos reales
 ```
 
 Abrí `sipia/index.html` en el navegador para ver el resultado antes de subir nada.
 
-- **Cambios de diseño** (colores, layout, textos fijos, agregar una sección nueva): editá `tools/sipia_dashboard_template.html`. Es HTML/CSS/JS común — el sistema de diseño usa fuentes Archivo/Public Sans/IBM Plex Mono y una paleta salmón/charcoal (identidad de Luma Group).
+- **Cambios de diseño** (colores, layout, textos fijos, agregar una sección nueva): editá `tools/sipia_dashboard_template.html`. Es HTML/CSS/JS común — el sistema de diseño usa fuentes Archivo/Public Sans/IBM Plex Mono y una paleta salmón/charcoal (identidad de marca de Luma).
 - **Cambios de lógica** (qué cuenta como atraso, cómo se arma cada fila, qué dispara una alerta, qué campos de Salesforce se traen): editá `tools/generar_sipia_dashboard.js`.
-- Cuando estés conforme, `git add`, `commit`, `push` normal. La tarea programada en la PC de comex@ baja tus cambios solos en la próxima corrida (máximo 2 horas después).
+- Cuando estés conforme, `git add`, `commit`, `push` normal. La tarea programada en la PC de operaciones baja tus cambios solos en la próxima corrida (máximo 2 horas después).
 
 ## 7. Pendientes / limitaciones conocidas
 
