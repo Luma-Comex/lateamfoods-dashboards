@@ -175,6 +175,7 @@ function renderDocsPanel(s) {
   return `
             <div class="ship-docs-panel">
               <div class="ship-docs-panel-inner">
+                <span class="docs-label">Documentos de embarque</span>
                 <span class="pay-line">Aprobado: ${aprobado}</span>
                 <span class="pay-line">Deliver: ${deliver}</span>
                 <span class="pay-line">Factura pagada: ${factura}</span>
