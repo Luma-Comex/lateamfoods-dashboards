@@ -650,6 +650,14 @@
   .alert-modal h2 { font: 800 20px "Archivo", sans-serif; margin: 0 0 6px; }
   .alert-modal p.lead { color: var(--ink-muted); font-size: 13.5px; margin: 0 0 16px; line-height: 1.5; }
   .alert-list { display: flex; flex-direction: column; gap: 8px; margin: 0 0 18px; }
+  .alert-group-title {
+    font: 700 10.5px "Public Sans", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--ink-faint);
+    margin: 6px 0 0;
+  }
+  .alert-group-title:first-child { margin-top: 0; }
   .alert-item {
     display: flex;
     gap: 10px;
@@ -761,7 +769,7 @@
   <p id="emptyState" style="display:none; text-align:center; color:var(--ink-faint); padding:30px 0;">No hay embarques que coincidan con este filtro o búsqueda.</p>
 
   <footer class="page-foot">
-    Panel generado automáticamente desde Salesforce (Contract · Contratct_Products__c · Shippings__c) — LATeamFoods Comex.
+    LATeamFoods Comex · Panel actualizado automáticamente. Ante cualquier duda sobre un embarque, escribinos a comex@lateamfoods.com
   </footer>
 
 </div>

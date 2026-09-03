@@ -650,6 +650,14 @@
   .alert-modal h2 { font: 800 20px "Archivo", sans-serif; margin: 0 0 6px; }
   .alert-modal p.lead { color: var(--ink-muted); font-size: 13.5px; margin: 0 0 16px; line-height: 1.5; }
   .alert-list { display: flex; flex-direction: column; gap: 8px; margin: 0 0 18px; }
+  .alert-group-title {
+    font: 700 10.5px "Public Sans", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--ink-faint);
+    margin: 6px 0 0;
+  }
+  .alert-group-title:first-child { margin-top: 0; }
   .alert-item {
     display: flex;
     gap: 10px;
@@ -693,28 +701,30 @@
 <div class="alert-overlay" id="alertOverlay" role="dialog" aria-modal="true" aria-labelledby="alertTitle">
   <div class="alert-modal">
     <div class="alert-modal-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
-    <h2 id="alertTitle">Hay pendientes que revisar</h2>
-    <p class="lead">Encontramos 5 avisos de documentación o pagos pendientes. Tocá un aviso para ir directo al detalle.</p>
+    <h2 id="alertTitle">Puntos abiertos</h2>
+    <p class="lead">Este es el estado de la documentación y los pagos de tus embarques ya cargados. Tocá cualquier ítem para ir directo a su detalle.</p>
     <div class="alert-list">
+      <p class="alert-group-title">Documentos pendientes de confirmación (2)</p>
+      <button class="alert-item" data-jump="ship-CE261566">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/></svg>
+        <span class="t">Embarque <b>CE261566</b> · Wan Hai 177 · Voy. N062</span>
+      </button>
+      <button class="alert-item" data-jump="ship-AZ260042">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/></svg>
+        <span class="t">Embarque <b>AZ260042</b> · Wan Hai 177 · Voy. N062</span>
+      </button>
+      <p class="alert-group-title">Facturas pendientes de pago (3) · US$ 62,428</p>
       <button class="alert-item" data-jump="ship-CE260990">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="t"><b>CE260990</b> tiene una factura de <b>US$ 17,721</b> pendiente de pago.</span>
+        <span class="t">Factura <b>CE260990</b> — <b>US$ 17,721</b></span>
       </button>
       <button class="alert-item" data-jump="ship-CE261566">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="t"><b>CE261566</b> (WAN HAI 177 V.N062) todavía no tiene sus documentos aprobados ni entregados.</span>
-      </button>
-      <button class="alert-item" data-jump="ship-CE261566">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="t"><b>CE261566</b> tiene una factura de <b>US$ 17,721</b> pendiente de pago.</span>
+        <span class="t">Factura <b>CE261566</b> — <b>US$ 17,721</b></span>
       </button>
       <button class="alert-item" data-jump="ship-AZ260042">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="t"><b>AZ260042</b> (WAN HAI 177 V.N062) todavía no tiene sus documentos aprobados ni entregados.</span>
-      </button>
-      <button class="alert-item" data-jump="ship-AZ260042">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="t"><b>AZ260042</b> tiene una factura de <b>US$ 26,986</b> pendiente de pago.</span>
+        <span class="t">Factura <b>AZ260042</b> — <b>US$ 26,986</b></span>
       </button>
     </div>
     <div class="alert-actions">
@@ -804,7 +814,7 @@
           </div>
         </div>
         <div class="contract-right">
-          <span class="status-pill st-warning"><span class="dot"></span>Parcial Loaded</span>
+          <span class="status-pill st-warning"><span class="dot"></span>Parcialmente cargado</span>
           <div class="contract-value">
             <div class="amount">US$ 125,566</div>
             <div class="label">Valor total</div>
@@ -831,7 +841,7 @@
               </thead>
               <tbody>
                 <tr data-subtotal="106326" data-pct="50">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Sweet Corn Kernel 15 OZ Standard  Brine  Easy Open Lid-Tins (425/260g) <span class="principal">Sweet Corn</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Sweet Corn Kernel 15 oz Standard Brine Easy Open Lid — Tins (425/260g) <span class="principal">Sweet Corn</span></td>
                   <td class="num">US$ 9.90</td>
                   <td class="num">10,740</td>
                   <td class="num">US$ 106,326</td>
@@ -840,7 +850,7 @@
                   </td>
                 </tr>
                 <tr data-subtotal="19240" data-pct="0">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Sweet Corn Kernel 12 OZ Standard  In Vacuum  Easy Open Lid-Tins (340/285g) <span class="principal">Sweet Corn</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Sweet Corn Kernel 12 oz Standard In Vacuum Easy Open Lid — Tins (340/285g) <span class="principal">Sweet Corn</span></td>
                   <td class="num">US$ 10.40</td>
                   <td class="num">1,850</td>
                   <td class="num">US$ 19,240</td>
@@ -858,7 +868,7 @@
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 4 de 7</span>
-                <span class="ship-note">ETD: END SEP · Produccion 2026 · 12 OZ</span>
+                <span class="ship-note">Producción 2026 · 12 oz</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
@@ -881,7 +891,7 @@
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 5 de 7</span>
-                <span class="ship-note">ETD: END SEP · Produccion 2026 · 15 OZ</span>
+                <span class="ship-note">Producción 2026 · 15 oz</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
@@ -904,7 +914,7 @@
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 6 de 7</span>
-                <span class="ship-note">ETD: Early NOV · Produccion 2026 · 15 OZ</span>
+                <span class="ship-note">Producción 2026 · 15 oz</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
@@ -927,7 +937,7 @@
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 7 de 7</span>
-                <span class="ship-note">ETD: Early FEB · Produccion 2026 · 15 OZ (IF NEEDED)</span>
+                <span class="ship-note">Producción 2026 · 15 oz</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
@@ -1046,7 +1056,7 @@
           </div>
         </div>
         <div class="contract-right">
-          <span class="status-pill st-warning"><span class="dot"></span>Parcial Loaded</span>
+          <span class="status-pill st-warning"><span class="dot"></span>Parcialmente cargado</span>
           <div class="contract-value">
             <div class="amount">US$ 80,958</div>
             <div class="label">Valor total</div>
@@ -1073,7 +1083,7 @@
               </thead>
               <tbody>
                 <tr data-subtotal="80958" data-pct="67">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Frozen Sweet Corn  20 KG     --Bags (20 KG) <span class="principal">Frozen Sweet Corn</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🌽</span>Frozen Sweet Corn 20 kg — Bags (20 kg) <span class="principal">Frozen Sweet Corn</span></td>
                   <td class="num">US$ 20.60</td>
                   <td class="num">3,930</td>
                   <td class="num">US$ 80,958</td>
@@ -1091,7 +1101,7 @@
             <div class="shipment-row" data-status="ongoing">
               <div class="ship-id-block">
                 <span class="ship-id">Embarque 3 de 3</span>
-                <span class="ship-note">FROZEN CORN</span>
+                <span class="ship-note">Frozen Corn</span>
               </div>
               <div class="ship-vessel"><span class="v-none">Buque aún sin asignar</span></div>
               <span class="status-pill st-warning"><span class="dot"></span>En curso</span>
@@ -1183,7 +1193,7 @@
           </div>
         </div>
         <div class="contract-right">
-          <span class="status-pill st-info"><span class="dot"></span>On Going</span>
+          <span class="status-pill st-info"><span class="dot"></span>En curso</span>
           <div class="contract-value">
             <div class="amount">US$ 12,920</div>
             <div class="label">Valor total</div>
@@ -1210,7 +1220,7 @@
               </thead>
               <tbody>
                 <tr data-subtotal="10602" data-pct="0">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🥒</span>Baby Gherkins in Acetic acid-D:1.2-2.0 cm/ L:3.0 -5.5 cm-Drums (270 KG/190KG) <span class="principal">Baby Gherkins</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🥒</span>Baby Gherkins in Acetic acid-D: 1.2-2.0 cm/ L: 3.0-5.5 cm — Drums (270 kg/190kg) <span class="principal">Baby Gherkins</span></td>
                   <td class="num">US$ 176.70</td>
                   <td class="num">60</td>
                   <td class="num">US$ 10,602</td>
@@ -1219,7 +1229,7 @@
                   </td>
                 </tr>
                 <tr data-subtotal="2318" data-pct="0">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🥒</span>Baby Gherkins in Acetic acid -D:2.1 -2.6 cm/ L: 5.6- 7.0 cm-Drums (270 KG/190KG) <span class="principal">Baby Gherkins</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">🥒</span>Baby Gherkins in Acetic acid -D: 2.1-2.6 cm/ L: 5.6-7.0 cm — Drums (270 kg/190kg) <span class="principal">Baby Gherkins</span></td>
                   <td class="num">US$ 115.90</td>
                   <td class="num">20</td>
                   <td class="num">US$ 2,318</td>
@@ -1265,7 +1275,7 @@
   <p id="emptyState" style="display:none; text-align:center; color:var(--ink-faint); padding:30px 0;">No hay embarques que coincidan con este filtro o búsqueda.</p>
 
   <footer class="page-foot">
-    Panel generado automáticamente desde Salesforce (Contract · Contratct_Products__c · Shippings__c) — LATeamFoods Comex.
+    LATeamFoods Comex · Panel actualizado automáticamente. Ante cualquier duda sobre un embarque, escribinos a comex@lateamfoods.com
   </footer>
 
 </div>

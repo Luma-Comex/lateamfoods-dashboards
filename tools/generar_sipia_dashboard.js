@@ -11,10 +11,11 @@ const OUT_FILE = path.join(__dirname, '..', 'sipia', 'index.html');
 
 const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
 
+// Etiquetas en espanol para el cliente (en Salesforce estan en ingles y con typos)
 const STATUS_LABEL = {
-  'In Approval Process': 'On Going',
-  'Waiting for sign': 'Waiting for sign',
-  'Parcial Loaded': 'Parcial Loaded',
+  'In Approval Process': 'En curso',
+  'Waiting for sign': 'Pendiente de firma',
+  'Parcial Loaded': 'Parcialmente cargado',
 };
 const STATUS_CLASS = {
   'In Approval Process': 'st-info',
@@ -99,6 +100,49 @@ function productIcon(name) {
   return PRODUCT_ICON[name] || '📦';
 }
 
+// Los nombres en Salesforce vienen con dobles espacios y guiones sueltos
+// (ej: "Frozen Sweet Corn  20 KG     --Bags (20 KG)"). Esto los deja presentables.
+function cleanProductName(raw) {
+  if (!raw) return '';
+  return String(raw)
+    .replace(/\s*-{2,}\s*/g, ' — ')   // "--Bags"  ->  " — Bags"
+    .replace(/\s*-\s*(Tins|Bags|Drums|Cans|Box|Boxes)\b/gi, ' — $1') // "Lid-Tins" -> "Lid — Tins"
+    .replace(/OZ\b/g, 'oz')
+    .replace(/KG\b/g, 'kg')
+    .replace(/(\d)\s*-\s*(\d)/g, '$1-$2')  // "3.0 -5.5" -> "3.0-5.5"
+    .replace(/:\s*(\d)/g, ': $1')          // "L:3.0" -> "L: 3.0"
+    .replace(/\s{2,}/g, ' ')               // colapsar espacios repetidos
+    .replace(/\s+([,;:)])/g, '$1')         // espacio antes de puntuacion
+    .replace(/\(\s+/g, '(')
+    .trim();
+}
+
+// Las notas de embarque son apuntes internos de comex, no lenguaje para el cliente.
+// Ej: "S4/4/7// ETD: END SEP// Produccion 2026// 12 OZ" -> "Produccion 2026 · 12 oz"
+const NOTA_INTERNA = /^(ETD\b|Booking\b|CAJA\b|Sujeto a necesidad)/i;
+
+function cleanShipNote(raw) {
+  if (!raw) return '';
+  const segmentos = String(raw)
+    .split('//')
+    .slice(1)                                   // sacar el codigo "S4/4/7"
+    .map(s => s.trim())
+    .filter(Boolean)
+    .filter(s => !NOTA_INTERNA.test(s))         // sacar "ETD: END SEP", "Booking OK", "CAJA OK"
+    .map(s => s.replace(/\(\s*IF NEEDED\s*\)/ig, '').trim())
+    .filter(Boolean)
+    .map(s => {
+      // "FROZEN CORN" -> "Frozen Corn"; deja en paz textos que ya son mixtos
+      if (s === s.toUpperCase() && /[A-Z]{3,}/.test(s)) s = toTitleCase(s);
+      return s
+        .replace(/\bProduccion\b/gi, 'Producción')
+        .replace(/\bOZ\b/gi, 'oz')
+        .replace(/\bKG\b/gi, 'kg');
+    })
+    .filter(Boolean);
+  return segmentos.join(' · ');
+}
+
 // status rank for sorting: ongoing first, then tbi, then loaded
 const STATUS_RANK = { 'On going': 0, 'TBI': 1, 'Loaded': 2 };
 
@@ -122,7 +166,7 @@ function renderProductRow(p) {
   const loadedPct = qty > 0 ? (loaded / qty) * 100 : 0;
   return `
                 <tr data-subtotal="${p.Subtotal__c}" data-pct="${Math.round(loadedPct)}">
-                  <td class="product-name"><span class="cat-icon" aria-hidden="true">${productIcon(p.Principal_Product__c)}</span>${esc(p.Name)} <span class="principal">${esc(p.Principal_Product__c)}</span></td>
+                  <td class="product-name"><span class="cat-icon" aria-hidden="true">${productIcon(p.Principal_Product__c)}</span>${esc(cleanProductName(p.Name))} <span class="principal">${esc(p.Principal_Product__c)}</span></td>
                   <td class="num">${moneyDec(p.Unit_Price__c)}</td>
                   <td class="num">${qty.toLocaleString('en-US')}</td>
                   <td class="num">${money(p.Subtotal__c)}</td>
@@ -183,13 +227,27 @@ function renderDocsPanel(s) {
             </div>`;
 }
 
+// El campo Name de Shippings__c es, en Salesforce, el numero de factura ("Invoice").
 function shipAlert(s) {
   const alerts = [];
-  if (s.Status__c === 'Loaded') {
-    const unpaid = s.Paid__c !== 'Yes' && s.Amount_to_be_paid__c;
-    const unapproved = !s.Date_of_approval__c;
-    if (unapproved) alerts.push({ id: shipDomId(s), text: `<b>${esc(s.Name)}</b>${s.Barco__c ? ' (' + esc(s.Barco__c) + ')' : ''} todavía no tiene sus documentos aprobados ni entregados.` });
-    if (unpaid) alerts.push({ id: shipDomId(s), text: `<b>${esc(s.Name)}</b> tiene una factura de <b>${money(s.Amount_to_be_paid__c)}</b> pendiente de pago.` });
+  if (s.Status__c !== 'Loaded') return alerts;
+
+  if (!s.Date_of_approval__c) {
+    const buque = s.Barco__c ? toTitleCase(s.Barco__c.replace(/\s+(?:voy\.?|v\.)\s*/i, ' · Voy. ')) : null;
+    alerts.push({
+      type: 'doc',
+      id: shipDomId(s),
+      text: `Embarque <b>${esc(s.Name)}</b>${buque ? ` · ${esc(buque)}` : ''}`,
+    });
+  }
+
+  if (s.Paid__c !== 'Yes' && s.Amount_to_be_paid__c) {
+    alerts.push({
+      type: 'invoice',
+      id: shipDomId(s),
+      amount: s.Amount_to_be_paid__c,
+      text: `Factura <b>${esc(s.Name)}</b> — <b>${money(s.Amount_to_be_paid__c)}</b>`,
+    });
   }
   return alerts;
 }
@@ -277,7 +335,7 @@ function renderShipmentRow(s, origin, dest) {
   const label = placeholderMatch ? `Embarque ${placeholderMatch[2]} de ${placeholderMatch[3]}` : s.Name;
   const note = (s.Nro_BL__c || s.Container_N__c)
     ? [s.Nro_BL__c ? 'BL ' + s.Nro_BL__c : null, s.Container_N__c ? 'Cont. ' + s.Container_N__c : null].filter(Boolean).join(' · ')
-    : (placeholderMatch ? s.Name.split('//').slice(1).map(x => x.trim()).filter(Boolean).join(' · ') : '');
+    : (placeholderMatch ? cleanShipNote(s.Name) : '');
 
   const dateOrRoute = (s.Status__c === 'Loaded')
     ? routeProgressHtml(s, TODAY, origin, dest)
@@ -405,20 +463,33 @@ const delayed = delays.filter(d => d.delayed);
 const avgDelay = delayed.length ? Math.round(delayed.reduce((a, d) => a + d.days, 0) / delayed.length) : 0;
 
 const alertItems = allShipments.flatMap(shipAlert);
+const docAlerts = alertItems.filter(a => a.type === 'doc');
+const invoiceAlerts = alertItems.filter(a => a.type === 'invoice');
+const invoiceTotal = invoiceAlerts.reduce((a, x) => a + x.amount, 0);
 
 const contractsHtml = rendered.map(r => r.html).join('\n');
+
+const ICON_DOC = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/></svg>';
+const ICON_MONEY = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>';
+
+function alertGroup(titulo, items, icono) {
+  if (!items.length) return '';
+  return `      <p class="alert-group-title">${titulo}</p>
+${items.map(a => `      <button class="alert-item" data-jump="${a.id}">
+        ${icono}
+        <span class="t">${a.text}</span>
+      </button>`).join('\n')}`;
+}
 
 const alertModalHtml = alertItems.length ? `
 <div class="alert-overlay" id="alertOverlay" role="dialog" aria-modal="true" aria-labelledby="alertTitle">
   <div class="alert-modal">
     <div class="alert-modal-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></div>
-    <h2 id="alertTitle">Hay pendientes que revisar</h2>
-    <p class="lead">Encontramos ${alertItems.length} aviso${alertItems.length === 1 ? '' : 's'} de documentación o pagos pendientes. Tocá un aviso para ir directo al detalle.</p>
+    <h2 id="alertTitle">Puntos abiertos</h2>
+    <p class="lead">Este es el estado de la documentación y los pagos de tus embarques ya cargados. Tocá cualquier ítem para ir directo a su detalle.</p>
     <div class="alert-list">
-${alertItems.map(a => `      <button class="alert-item" data-jump="${a.id}">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <span class="t">${a.text}</span>
-      </button>`).join('\n')}
+${alertGroup(`Documentos pendientes de confirmación (${docAlerts.length})`, docAlerts, ICON_DOC)}
+${alertGroup(`Facturas pendientes de pago (${invoiceAlerts.length}) · ${money(invoiceTotal)}`, invoiceAlerts, ICON_MONEY)}
     </div>
     <div class="alert-actions">
       <button class="alert-btn" id="alertDismiss" type="button">Entendido, ver el panel</button>
